@@ -18,7 +18,7 @@ int main() {
         scanf("%d", &opcao);
 
         switch (opcao) {
-               
+                     
             case 1: {
                 
                 int codigo;
