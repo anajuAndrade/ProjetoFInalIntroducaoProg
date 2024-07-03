@@ -1,50 +1,68 @@
-#include <stdio.h>
 #include "funcoes.h"
+#include <stdio.h>
 
 int main() {
-    Produto prateleira[TAM];
+    struct Prateleira prateleira[TAM];
 
-    receberDadosPrateleira(prateleira, TAM);
+    lerDados(prateleira, TAM);
 
     int opcao;
     do {
-        printf("\nMenu:\n");
-        printf("1. Calcular valor em estoque de um produto\n");
-        printf("2. Calcular valor total em estoque\n");
-        printf("3. Encontrar produto mais caro\n");
-        printf("4. Encontrar produto mais barato\n");
+        printf("\n\n<---- Menu ---->\n");
+        printf("1. Calcular valor em estoque de um produto.\n");
+        printf("2. Calcular valor total em estoque.\n");
+        printf("3. Encontrar produto mais caro.\n");
+        printf("4. Encontrar produto mais barato.\n");
         printf("0. Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
         switch (opcao) {
+               
             case 1: {
+                
                 int codigo;
+                
                 printf("Digite o codigo do produto: ");
                 scanf("%d", &codigo);
+                
                 for (int i = 0; i < TAM; i++) {
-                    if (prateleira[i].codigo == codigo) {
-                        float valor = calcularValorEstoqueProduto(prateleira[i]);
-                        printf("Valor em estoque do produto %d: %.2f\n", codigo, valor);
+                    if (prateleira[i].id == codigo) {
+                        float valor = valorEstoqueProduto(prateleira[i]);
+                        printf("O valor em estoque do produto %d é: R$%.2f\n", codigo, valor);
                         break;
                     }
                 }
-                break;
+                
+            break;
             }
+            
             case 2: {
-                float valorTotal = calcularValorTotalEstoque(prateleira, TAM);
-                printf("Valor total em estoque: %.2f\n", valorTotal);
-                break;
+                
+                float valorTotal = valorTotalEstoque(prateleira, TAM);
+                
+                printf("O valor total em estoque é: R$%.2f\n", valorTotal);
+            
+            break;
             }
+            
             case 3:
-                encontrarProdutoMaisCaro(prateleira, TAM);
-                break;
+                
+                produtoMaisCaro(prateleira, TAM);
+                
+            break;
+            
             case 4:
-                encontrarProdutoMaisBarato(prateleira, TAM);
+                
+                produtoMaisBarato(prateleira, TAM);
                 break;
+            
             case 0:
-                printf("Saindo...\n");
-                break;
+
+                printf("Sistema finalizado.\n");
+                
+            break;
+            
             default:
                 printf("Opcao invalida!\n");
         }

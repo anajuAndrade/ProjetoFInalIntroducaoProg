@@ -1,51 +1,49 @@
-#include <stdio.h>
 #include "funcoes.h"
+#include <stdio.h>
 
-void receberDadosPrateleira(Produto vetor[], int tam) {
+void lerDados(struct Prateleira vetor[], int tam) {
     for (int i = 0; i < tam; i++) {
         printf("Digite os dados do produto %d:\n", i + 1);
-        printf("Nome: ");
-        scanf("%s", vetor[i].nome);
-        printf("Código: ");
-        scanf("%d", &vetor[i].codigo);
+        printf("Nome do Produto: ");
+        scanf("%s", vetor[i].nomeProduto);
+        printf("Código do Produto: ");
+        scanf("%d", &vetor[i].id);
         printf("Quantidade em estoque: ");
         scanf("%d", &vetor[i].quantidade);
-        printf("Preço: ");
-        scanf("%f", &vetor[i].preco);
+        printf("Valor: ");
+        scanf("%f", &vetor[i].valor);
     }
 }
 
-float calcularValorEstoqueProduto(Produto produto) {
-    return produto.quantidade * produto.preco;
+float valorEstoqueProduto(struct Prateleira produto) {
+    return produto.quantidade * produto.valor;
 }
 
-float calcularValorTotalEstoque(Produto vetor[], int tam) {
+float valorTotalEstoque(struct Prateleira vetor[], int tam) {
     float total = 0;
     for (int i = 0; i < tam; i++) {
-        total += calcularValorEstoqueProduto(vetor[i]);
+        total += valorEstoqueProduto(vetor[i]);
     }
     return total;
 }
 
-void encontrarProdutoMaisCaro(Produto vetor[], int tam) {
-    int indexMaisCaro = 0;
+void produtoMaisCaro(struct Prateleira vetor[], int tam) {
+    int maiorV = 0;
     for (int i = 1; i < tam; i++) {
-        if (vetor[i].preco > vetor[indexMaisCaro].preco) {
-            indexMaisCaro = i;
+        if (vetor[i].valor > vetor[maiorV].valor) {
+            maiorV = i;
         }
     }
-    printf("Produto mais caro:\nNome: %s\nCódigo: %d\nQuantidade: %d\nPreço: %.2f\n",
-           vetor[indexMaisCaro].nome, vetor[indexMaisCaro].codigo, vetor[indexMaisCaro].quantidade, vetor[indexMaisCaro].preco);
+    printf("O produto mais caro é: %s.", vetor[maiorV].nomeProduto);
 }
 
-void encontrarProdutoMaisBarato(Produto vetor[], int tam) {
-    int indexMaisBarato = 0;
+void produtoMaisBarato(struct Prateleira vetor[], int tam) {
+    int menorV = 0;
     for (int i = 1; i < tam; i++) {
-        if (vetor[i].preco < vetor[indexMaisBarato].preco) {
-            indexMaisBarato = i;
+        if (vetor[i].valor < vetor[menorV].valor) {
+            menorV = i;
         }
     }
-    printf("Produto mais barato:\nNome: %s\nCódigo: %d\nQuantidade: %d\nPreço: %.2f\n",
-           vetor[indexMaisBarato].nome, vetor[indexMaisBarato].codigo, vetor[indexMaisBarato].quantidade, vetor[indexMaisBarato].preco);
+    printf("O produto mais barato é: %s.", vetor[menorV].nomeProduto);
 }
 

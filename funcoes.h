@@ -1,19 +1,16 @@
-#ifndef FUNCOES_H
-#define FUNCOES_H
 
 #define TAM 10
 
-typedef struct {
-    char nome[20];
-    int codigo;
+struct Prateleira {
+    char nomeProduto[20];
+    int id;
     int quantidade;
-    float preco;
-} Produto;
+    float valor;
+};
 
-void receberDadosPrateleira(Produto vetor[], int tam);
-float calcularValorEstoqueProduto(Produto produto);
-float calcularValorTotalEstoque(Produto vetor[], int tam);
-void encontrarProdutoMaisCaro(Produto vetor[], int tam);
-void encontrarProdutoMaisBarato(Produto vetor[], int tam);
+void lerDados(struct Prateleira vetor[], int tam);
+float valorEstoqueProduto(struct Prateleira produto);
+float valorTotalEstoque(struct Prateleira vetor[], int tam);
+void produtoMaisCaro(struct Prateleira vetor[], int tam);
+void produtoMaisBarato(struct Prateleira vetor[], int tam);
 
-#endif
